@@ -1,0 +1,89 @@
+name: Build and Deploy React App to EC2
+
+on:
+  workflow_dispatch: # Manual trigger from GitHub UI
+
+jobs:
+  build:
+    name: Build React App
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Set up Node.js 20 (stable version)
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      # Install project dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Build the React app
+      - name: Build the React app
+        run: npm run build
+
+      # Archive the build files
+      - name: Archive production files
+        run: tar -czf build.tar.gz build
+        continue-on-error: false
+
+      # Upload build artifact for later steps
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: build.tar.gz
+
+  deploy:
+    name: Deploy to EC2
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      # Manual approval step before deployment
+      - name: Wait for approval
+        uses: dannyben/approve-action@v2.2.0
+        with:
+          label: "Approve deployment to EC2?"
+          timeout_seconds: 600
+
+      # Download build artifact from previous job
+      - name: Download build artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+
+      # Upload build artifact to EC2 using SCP
+      - name: Upload build to EC2
+        uses: appleboy/scp-action@v0.1.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: build.tar.gz
+          target: /home/ec2-user/build.tar.gz
+
+      # SSH into EC2 and deploy the build files
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v0.1.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # Go to the website folder
+            cd /var/www/html/website
+            # Remove old build files
+            rm -rf build
+            # Move the uploaded build to the website directory
+            mv /home/ec2-user/build.tar.gz .
+            # Extract the build
+            tar -xzf build.tar.gz
+            # Remove the tar file after extraction
+            rm build.tar.gz
+            echo "Deployment completed successfully!"

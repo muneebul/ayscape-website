@@ -1,4 +1,4 @@
-name: Build and Deploy React App to EC2
+name: Build and Deploy Website to EC2
 
 on:
   workflow_dispatch: # Manual trigger from GitHub UI
@@ -27,56 +27,24 @@ jobs:
       - name: Build the React app
         run: npm run build
 
-      # Archive the build files
-      - name: Archive production files
-        run: tar -czf build.tar.gz build
-        continue-on-error: false
-
-      # Upload build artifact for later steps
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: build
-          path: build.tar.gz
-
-  deploy:
-    name: Deploy to EC2
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      # Download build artifact from previous job
-      - name: Download build artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: build
-
-      # Upload build artifact to EC2 using SCP
+      # Upload the build files to EC2 using SCP
       - name: Upload build to EC2
         uses: appleboy/scp-action@v0.1.3
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: build.tar.gz
-          target: /home/ec2-user/build.tar.gz
+          source: ./build/*
+          target: /var/www/html/website/
 
-      # SSH into EC2 and deploy the build files
-      - name: Deploy to EC2
+      # SSH into EC2 and set permissions (if needed)
+      - name: Set permissions on EC2
         uses: appleboy/ssh-action@v0.1.3
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            # Go to the website folder
-            cd /var/www/html/website
-            # Remove old build files
-            rm -rf build
-            # Move the uploaded build to the website directory
-            mv /home/ec2-user/build.tar.gz .
-            # Extract the build
-            tar -xzf build.tar.gz
-            # Remove the tar file after extraction
-            rm build.tar.gz
-            echo "Deployment completed successfully!"
+            # Ensure the website directory has correct permissions
+            sudo chown -R ${{ secrets.EC2_USER }}: /var/www/html/website
+            echo "Permissions updated successfully!"

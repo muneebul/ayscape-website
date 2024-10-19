@@ -40,7 +40,7 @@ const Hero = () => {
               className="img-fluid main-img-mobile d-sm-block d-lg-none"
               alt="hero man"
             />
-            <img style={{ width: "30%", float: "right", padding: "7% 3% 0% 3%" }}  className="text-uppercase poppins-font"
+            <img alt="simsign" style={{ width: "30%", float: "right", padding: "7% 3% 0% 3%" }}  className="text-uppercase poppins-font"
             src={heroContent.logoImg}
              
             />

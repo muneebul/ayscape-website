@@ -2,7 +2,6 @@
   "name": "tunis",
   "version": "2.2.1",
   "private": true,
-  "homepage": "/website/build",
   "dependencies": {
     "@emailjs/browser": "^3.12.1",
     "@testing-library/jest-dom": "^5.11.4",

@@ -4,7 +4,7 @@ import img2 from "../assets/img/blog/tizen3.png";
 import img3 from "../assets/img/blog/linuxtext2.png";
 import img4 from "../assets/img/blog/android.png";
 import img5 from "../assets/img/blog/zameerreshi.png";
-import img6 from "../assets/img/blog/lateefpalla.png";
+import img6 from "../assets/img/blog/winds.png";
 
 
 const AllBlogData = () => {

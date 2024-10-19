@@ -12,7 +12,7 @@ const heroContent = {
   logoImg: logoImg,
   heroTitleName: "SimSign",
   heroDesignation: "Digital Signage",
-  heroDescriptions: `SimSign is a powerful digital signage solution that leverages digital displays like webOS, Tizen, Android, Linux, Raspberry Pi and Windows to deliver dynamic content such as advertisements, announcements, and real-time information. Found in diverse environments like retail stores, airports, corporate offices, and public spaces, SimSign enhances audience engagement through visually appealing, easily updatable content. With the ability to integrate multimedia elements and interactive features, it provides businesses and organizations with an efficient way to share targeted messages, increase brand visibility, and improve customer experience.`,
+  heroDescriptions: `is a powerful digital signage solution that leverages digital displays like webOS, Tizen, Android, Linux, Raspberry Pi and Windows to deliver dynamic content such as advertisements, announcements, and real-time information. Found in diverse environments like retail stores, airports, corporate offices, and public spaces, SimSign enhances audience engagement through visually appealing, easily updatable content. It provides businesses and organizations with an efficient way to share targeted messages, increase brand visibility, and improve customer experience.`,
   heroBtn: "About Us",
 };
 
@@ -40,12 +40,16 @@ const Hero = () => {
               className="img-fluid main-img-mobile d-sm-block d-lg-none"
               alt="hero man"
             />
+                <h1 className="text-uppercase poppins-font">
+               {heroContent.heroTitleName}
+              <span >{heroContent.heroDesignation}</span>
+            </h1>
             <img alt="simsign" style={{ width: "30%", float: "right", padding: "7% 3% 0% 3%" }}  className="text-uppercase poppins-font"
             src={heroContent.logoImg}
              
             />
               {/* <span>{heroContent.heroDesignation}</span>  */}
-            <p style={{ textAlign: "justify" }} className="open-sans-font">{heroContent.heroDescriptions}</p>
+            <p style={{ textAlign: "justify" }} className="open-sans-font"><span style={{ color: "#ffb400" }}>{heroContent.heroTitleName}</span> {heroContent.heroDescriptions}</p>
             <button className="button" onClick={toggleModalOne}>
               <span className="button-text">{heroContent.heroBtn}</span>
               <span className="button-icon fa fa-arrow-right"></span>

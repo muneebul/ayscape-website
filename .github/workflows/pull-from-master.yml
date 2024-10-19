@@ -11,7 +11,7 @@ jobs:
     steps:
       # Checkout the repository code
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Set up Node.js 20 (stable version)
       - name: Set up Node.js 20
@@ -45,16 +45,9 @@ jobs:
     needs: build
 
     steps:
-      # Manual approval step before deployment
-      - name: Wait for approval
-        uses: dannyben/approve-action@v2.2.0
-        with:
-          label: "Approve deployment to EC2?"
-          timeout_seconds: 600
-
       # Download build artifact from previous job
       - name: Download build artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: build
 

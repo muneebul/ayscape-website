@@ -38,10 +38,10 @@ const index = () => {
               {/* End personal info */}
 
               <div className="col-12 mt-1">
-                <a className="button" href="/" download>
+                <button className="button" download>
                   <span className="button-text">Download Catalog</span>
                   <span className="button-icon fa fa-download"></span>
-                </a>
+                </button>
               </div>
               {/* End download button */}
             </div>

@@ -7,7 +7,7 @@ const personalInfoContent = [
   // { meta: "Nationality", metaInfo: "Tunisian" },
   { meta: "Services", metaInfo: "specializing in digital signage" },
   { meta: "Address", metaInfo: "Dubai - UAE" },
-  { meta: "phone", metaInfo: "+351914285034" },
+  { meta: "phone", metaInfo: "+966553242639" },
   { meta: "Email", metaInfo: "admin@simsign.org" },
   // { meta: "Skype", metaInfo: " steve.milner" },
   { meta: "langages", metaInfo: "Arabic, English" },

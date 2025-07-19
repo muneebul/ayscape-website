@@ -10,11 +10,12 @@ const heroContent = {
   heroImage: heroImg,
   heroMobileImage: heroImgMobile,
   logoImg: logoImg,
-  heroTitleName: "SimSign",
-  heroDesignation: "Digital Signage",
-  heroDescriptions: `is a powerful digital signage solution that leverages digital displays like webOS, Tizen, Android, Linux, Raspberry Pi and Windows to deliver dynamic content such as advertisements, announcements, and real-time information. Found in diverse environments like retail stores, airports, corporate offices, and public spaces, SimSign enhances audience engagement through visually appealing, easily updatable content. It provides businesses and organizations with an efficient way to share targeted messages, increase brand visibility, and improve customer experience.`,
+  heroTitleName: "Ayscape Cloud",
+  heroDesignation: "Cloud Software Solutions",
+  heroDescriptions: `offers cutting-edge cloud software designed to help businesses scale effortlessly, collaborate seamlessly, and operate more efficiently. From custom SaaS platforms to workflow automation and secure cloud infrastructure, Ayscape Cloud delivers reliable, scalable, and user-friendly solutions. Trusted by modern teams, it empowers organizations to streamline operations, enhance agility, and unlock the full potential of cloud-first transformation.`,
   heroBtn: "About Us",
 };
+
 
 const Hero = () => {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,50 +1,53 @@
-name: Build and Deploy Website to EC2
+name: Build and Deploy Website to Hostinger
 
 on:
-  workflow_dispatch: # Manual trigger from GitHub UI
+  workflow_dispatch:
 
 jobs:
   build:
-    name: Build React App
+    name: Build and Deploy React App
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repository code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Set up Node.js 20 (stable version)
       - name: Set up Node.js 20
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
-      # Install project dependencies
       - name: Install dependencies
         run: npm install
 
-      # Build the React app
       - name: Build the React app
         run: npm run build
 
-      # Upload the build files to EC2 using SCP
-      - name: Upload build to EC2
-        uses: appleboy/scp-action@v0.1.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: ./build/*
-          target: /var/www/html/website/
+      - name: Install expect (for password-based SSH)
+        run: sudo apt-get update && sudo apt-get install -y expect
 
-      # SSH into EC2 and set permissions (if needed)
-      - name: Set permissions on EC2
-        uses: appleboy/ssh-action@v0.1.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            # Ensure the website directory has correct permissions
-            sudo chown -R ${{ secrets.EC2_USER }}: /var/www/html/website
-            echo "Permissions updated successfully!"
+      - name: Upload build to Hostinger using scp + expect
+        run: |
+          echo '#!/usr/bin/expect -f' > scp_script.exp
+          echo 'set timeout -1' >> scp_script.exp
+          echo 'spawn scp -P 65002 -r ./build/* u242984543@217.21.85.139:domains/ayscape.com/public_html' >> scp_script.exp
+          echo 'expect "password:"' >> scp_script.exp
+          echo 'send "MIpple121#\r"' >> scp_script.exp
+          echo 'expect eof' >> scp_script.exp
+          chmod +x scp_script.exp
+          ./scp_script.exp
+
+      - name: Set permissions on Hostinger using ssh + expect
+        run: |
+          echo '#!/usr/bin/expect -f' > ssh_script.exp
+          echo 'set timeout -1' >> ssh_script.exp
+          echo 'spawn ssh -p 65002 u242984543@217.21.85.139' >> ssh_script.exp
+          echo 'expect "password:"' >> ssh_script.exp
+          echo 'send "MIpple121#\r"' >> ssh_script.exp
+          echo 'expect "$ "' >> ssh_script.exp
+          echo 'send "chmod -R 755 domains/ayscape.com/public_html\r"' >> ssh_script.exp
+          echo 'expect "$ "' >> ssh_script.exp
+          echo 'send "exit\r"' >> ssh_script.exp
+          echo 'expect eof' >> ssh_script.exp
+          chmod +x ssh_script.exp
+          ./ssh_script.exp

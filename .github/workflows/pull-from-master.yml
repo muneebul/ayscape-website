@@ -23,19 +23,26 @@ jobs:
       - name: Build the React app
         run: npm run build
 
-      - name: Install expect (for password-based SSH)
-        run: sudo apt-get update && sudo apt-get install -y expect
-
-      - name: Upload build to Hostinger using scp + expect
+      - name: Verify build output
         run: |
-          echo '#!/usr/bin/expect -f' > scp_script.exp
-          echo 'set timeout -1' >> scp_script.exp
-          echo 'spawn scp -P 65002 -r ./build/* u242984543@217.21.85.139:domains/ayscape.com/public_html' >> scp_script.exp
-          echo 'expect "password:"' >> scp_script.exp
-          echo 'send "MIpple121#\r"' >> scp_script.exp
-          echo 'expect eof' >> scp_script.exp
-          chmod +x scp_script.exp
-          ./scp_script.exp
+          echo "Listing contents of current directory:"
+          ls -la
+          echo "Listing contents of build folder:"
+          ls -la build || (echo "❌ Build folder not found!" && exit 1)
+
+      - name: Install expect and rsync
+        run: sudo apt-get update && sudo apt-get install -y expect rsync
+
+      - name: Upload build to Hostinger using rsync + expect
+        run: |
+          echo '#!/usr/bin/expect -f' > rsync_script.exp
+          echo 'set timeout -1' >> rsync_script.exp
+          echo 'spawn rsync -avz -e "ssh -p 65002" build/ u242984543@217.21.85.139:domains/ayscape.com/public_html' >> rsync_script.exp
+          echo 'expect "password:"' >> rsync_script.exp
+          echo 'send "MIpple121#\r"' >> rsync_script.exp
+          echo 'expect eof' >> rsync_script.exp
+          chmod +x rsync_script.exp
+          ./rsync_script.exp
 
       - name: Set permissions on Hostinger using ssh + expect
         run: |

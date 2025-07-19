@@ -37,7 +37,7 @@ jobs:
         run: |
           echo '#!/usr/bin/expect -f' > rsync_script.exp
           echo 'set timeout -1' >> rsync_script.exp
-          echo 'spawn rsync -avz -e "ssh -p 65002" build/ u242984543@217.21.85.139:domains/ayscape.com/public_html' >> rsync_script.exp
+          echo 'spawn rsync -avz -e "ssh -p 65002 -o StrictHostKeyChecking=no" build/ u242984543@217.21.85.139:domains/ayscape.com/public_html' >> rsync_script.exp
           echo 'expect "password:"' >> rsync_script.exp
           echo 'send "MIpple121#\r"' >> rsync_script.exp
           echo 'expect eof' >> rsync_script.exp
@@ -48,7 +48,7 @@ jobs:
         run: |
           echo '#!/usr/bin/expect -f' > ssh_script.exp
           echo 'set timeout -1' >> ssh_script.exp
-          echo 'spawn ssh -p 65002 u242984543@217.21.85.139' >> ssh_script.exp
+          echo 'spawn ssh -p 65002 -o StrictHostKeyChecking=no u242984543@217.21.85.139' >> ssh_script.exp
           echo 'expect "password:"' >> ssh_script.exp
           echo 'send "MIpple121#\r"' >> ssh_script.exp
           echo 'expect "$ "' >> ssh_script.exp

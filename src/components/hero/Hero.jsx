@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import heroImg from "../../assets/img/hero/homeimg.gif";
-import logoImg from "../../assets/img/hero/logo.png";
-import heroImgMobile from "../../assets/img/hero/homeimg.gif";
+import heroImg from "../../assets/img/hero/homimg.jpg";
+import logoImg from "../../assets/img/hero/logoimg.png";
+import heroImgMobile from "../../assets/img/hero/homimg.jpg";
 import cancelImg from "../../assets/img/cancel.svg";
 import Index from "../../components/about/index";
 
@@ -16,9 +16,9 @@ const heroContent = {
   heroBtn: "About Us",
 };
 
-
 const Hero = () => {
   const [isOpen, setIsOpen] = useState(false);
+
   function toggleModalOne() {
     setIsOpen(!isOpen);
   }
@@ -26,31 +26,80 @@ const Hero = () => {
   return (
     <>
       <div className="row home-details-container align-items-center">
+        {/* Desktop Side Image */}
         <div
-          className="col-lg-4 bg position-fixed d-none d-lg-block"
+          className="col-lg-5 bg position-fixed d-none d-lg-block"
           style={{
-            backgroundImage: `url(${
-              process.env.PUBLIC_URL + heroContent.heroImage
-            })`,
+            backgroundImage: `url(${process.env.PUBLIC_URL + heroContent.heroImage})`,
           }}
-        ></div>
-        <div className="col-12 col-lg-8 offset-lg-4 home-details  text-center text-lg-start">
+        >
+          <div
+            style={{
+              position: "absolute",
+              top: "4rem",
+              left: "7rem",
+              fontWeight: "600",
+              fontSize: "1.75rem",
+              background: "linear-gradient(90deg, #00c9ff, #92fe9d)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              textShadow: "1px 1px 4px rgba(0, 0, 0, 0.4)",
+            }}
+          >
+            Ayscape Cloud Private Limited
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="col-12 col-lg-8 offset-lg-4 home-details text-center text-lg-start">
           <div>
-            <img
-              src={heroContent.heroMobileImage}
-              className="img-fluid main-img-mobile d-sm-block d-lg-none"
-              alt="hero man"
-            />
-                <h1 className="text-uppercase poppins-font">
-               {heroContent.heroTitleName}
-              <span >{heroContent.heroDesignation}</span>
+            {/* Mobile Image with Overlay Text */}
+            <div
+              className="d-block d-lg-none position-relative"
+              style={{ width: "100%", maxHeight: "300px", overflow: "hidden" }}
+            >
+              <img
+                src={heroContent.heroMobileImage}
+                alt="hero mobile"
+                className="img-fluid w-100"
+                style={{ height: "300px", objectFit: "cover" }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  top: "1rem",
+                  left: "1rem",
+                  right: "1rem",
+                  fontWeight: "600",
+                  fontSize: "1.3rem",
+                  background: "linear-gradient(90deg, #00c9ff, #92fe9d)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  textShadow: "1px 1px 4px rgba(0, 0, 0, 0.4)",
+                  zIndex: 2,
+                }}
+              >
+                Ayscape Cloud Private Limited
+              </div>
+            </div>
+
+            <h1 className="text-uppercase poppins-font mt-3">
+              {heroContent.heroTitleName}
+              <span> {heroContent.heroDesignation}</span>
             </h1>
-            <img alt="simsign" style={{ width: "30%", float: "right", padding: "7% 3% 0% 3%" }}  className="text-uppercase poppins-font"
-            src={heroContent.logoImg}
-             
+
+            <img
+              alt="logo"
+              style={{ width: "30%", float: "right", padding: "7% 3% 0% 3%" }}
+              className="text-uppercase poppins-font"
+              src={heroContent.logoImg}
             />
-              {/* <span>{heroContent.heroDesignation}</span>  */}
-            <p style={{ textAlign: "justify" }} className="open-sans-font"><span style={{ color: "#ffb400" }}>{heroContent.heroTitleName}</span> {heroContent.heroDescriptions}</p>
+
+            <p style={{ textAlign: "justify" }} className="open-sans-font">
+              <span style={{ color: "green" }}>{heroContent.heroTitleName}</span>{" "}
+              {heroContent.heroDescriptions}
+            </p>
+
             <button className="button" onClick={toggleModalOne}>
               <span className="button-text">{heroContent.heroBtn}</span>
               <span className="button-icon fa fa-arrow-right"></span>
@@ -58,9 +107,8 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      {/* End home-details-container */}
 
-      {/* Start Modal for About More */}
+      {/* Modal for About Us */}
       <Modal
         isOpen={isOpen}
         onRequestClose={toggleModalOne}
@@ -73,7 +121,6 @@ const Hero = () => {
           <button className="close-modal" onClick={toggleModalOne}>
             <img src={cancelImg} alt="close icon" />
           </button>
-          {/* End close icon */}
 
           <div className="box_inner about">
             <div data-aos="fade-up" data-aos-duration="1200">
@@ -81,16 +128,13 @@ const Hero = () => {
                 <h1>
                   ABOUT <span>US</span>
                 </h1>
-                <span className="title-bg">SimSign</span>
+                <span className="title-bg">Ayscape Cloud</span>
               </div>
-              {/* End title */}
               <Index />
             </div>
           </div>
         </div>
-        {/* End modal box news */}
       </Modal>
-      {/* End  Modal for About More */}
     </>
   );
 };

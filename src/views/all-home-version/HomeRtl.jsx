@@ -59,7 +59,7 @@ const HomeRtl = () => {
                 <h1>
                   ABOUT <span>US</span>
                 </h1>
-                <span className="title-bg">SimSign</span>
+                <span className="title-bg">Ayscape Cloud</span>
               </div>
               {/* End title */}
               <Index />

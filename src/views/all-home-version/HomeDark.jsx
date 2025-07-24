@@ -58,7 +58,7 @@ const HomeDark = () => {
                 <h1>
                   ABOUT <span>US</span>
                 </h1>
-                <span className="title-bg">SimSign</span>
+                <span className="title-bg">Ayscape Cloud</span>
                 
               </div>
               {/* End title */}
@@ -77,7 +77,7 @@ const HomeDark = () => {
               <h1>
                 <span>portfolio</span>
               </h1>
-              <span className="title-bg">SimSign</span>
+              <span className="title-bg">Ayscape Cloud</span>
             </div>
             {/* End title */}
             <Portfolio />
@@ -94,7 +94,7 @@ const HomeDark = () => {
               <h1>
                 get in <span>touch</span>
               </h1>
-              <span className="title-bg">SimSign</span>
+              <span className="title-bg">Ayscape Cloud</span>
             </div>
             <div
               className="container"
@@ -141,7 +141,7 @@ const HomeDark = () => {
               <h1>
                 <span>Platforms</span>
               </h1>
-              <span className="title-bg">SimSign</span>
+              <span className="title-bg">Ayscape Cloud</span>
             </div>
             <div
               className="container"

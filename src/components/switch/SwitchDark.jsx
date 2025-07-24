@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import lightImage from "../../assets/img/sun.png";
 
 const SwitchDark = () => {
   const [isDark, setIsDark] = useState(false);
+
+  // Set default theme to light on component mount
+  useEffect(() => {
+    localStorage.setItem("theme-color", "light");
+    document.querySelector("body").classList.add("light");
+    document.querySelector("body").classList.remove("dark");
+    setIsDark(true);
+  }, []);
 
   const handleLabelClick = () => {
     if (isDark) {

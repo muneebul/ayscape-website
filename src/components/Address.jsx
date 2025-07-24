@@ -5,7 +5,7 @@ const Address = () => {
     <>
       <p className="open-sans-font custom-span-contact position-relative">
         <i className="fa fa-map position-absolute"></i>
-        <span className="d-block">Address Point</span>1226 Tamani Arts Building PO Box: 416343, Business Bay, Dubai - UAE
+        <span className="d-block">Address Point</span>Druroo tangmarg, Jammu & Kashmir, Tangmarg, 193402
       </p>
       {/* End .custom-span-contact */}
 
@@ -19,7 +19,7 @@ const Address = () => {
       <p className="open-sans-font custom-span-contact position-relative">
         <i className="fa fa-phone-square position-absolute"></i>
         <span className="d-block">call us</span>{" "}
-        <a href="tel:+966553242639">+966553242639</a>
+        <a href="tel:+966553242639">+917006992372</a>
       </p>
       {/* End .custom-span-contact */}
     </>

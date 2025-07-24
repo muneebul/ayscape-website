@@ -1,12 +1,12 @@
-import Image1 from "../../assets/img/portfolio/reteil.jpg";
-import Image2 from "../../assets/img/portfolio/hotel.jpg";
-import Image3 from "../../assets/img/portfolio/healthcare.jpg";
-import Image4 from "../../assets/img/portfolio/eduction.jpg";
-import Image5 from "../../assets/img/portfolio/transport.jpg";
-import Image6 from "../../assets/img/portfolio/coprate.jpg";
-import Image7 from "../../assets/img/portfolio/enterment.jpg";
-import Image8 from "../../assets/img/portfolio/banking.jpg";
-import Image9 from "../../assets/img/portfolio/smart.jpg";
+import Image1 from "../../assets/img/portfolio/cloud.jpg";
+import Image2 from "../../assets/img/portfolio/cloud1.jpg";
+import Image3 from "../../assets/img/portfolio/home1.avif";
+import Image4 from "../../assets/img/portfolio/home1.jpg";
+import Image5 from "../../assets/img/portfolio/home2.avif";
+import Image6 from "../../assets/img/portfolio/cloud2.jpg";
+import Image7 from "../../assets/img/portfolio/cloud4.jpg";
+import Image8 from "../../assets/img/portfolio/cloud3.jpg";
+import Image9 from "../../assets/img/portfolio/cloud6.jpg";
 
 const PortfolioData = [
   {

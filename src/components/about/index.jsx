@@ -15,12 +15,16 @@ const index = () => {
           {/* Personal Info Starts */}
 
           <div className="col-xl-6 col-lg-5 col-12">
-            <div className="row">
-              <div className="col-12">
-                <h3 className="text-uppercase custom-title mb-0 ft-wt-600">
-                  Company info
-                </h3>
-              </div>
+  <div className="">
+    <div className="col-12 box-stats with-margin">
+      <h3 className="text-uppercase custom-title mb-0 ft-wt-600">
+        Company Info
+      </h3>
+      <h6 className="mt-2 " style={{ wordSpacing: "5px" }}>
+  <span className="text-success fw-bold">Ayscape Cloud</span> is a leading cloud software company with over 12 years of experience. We specialize in digital signage, cloud content management, and remote display solutions. Our mission is to empower businesses with scalable, smart, and real-time visual communication tools powered by cloud technology.
+</h6>
+
+    </div>
               {/* End .col */}
 
               {/* <div className="col-12 d-block d-sm-none">

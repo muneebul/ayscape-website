@@ -66,7 +66,7 @@ const Blog = () => {
                       <h1>
                         Platform  <span>Details</span>
                       </h1>
-                      <span className="title-bg">SimSign</span>
+                      <span className="title-bg">Ayscape Cloud</span>
                     </div>
                     {/* Meta Starts */}
 
